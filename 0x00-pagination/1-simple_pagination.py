@@ -24,7 +24,7 @@ class Server:
             self.__dataset = dataset[1:]
 
         return self.__dataset
-    
+
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """Finds the correct indexes to paginate dataset.
         """
@@ -38,7 +38,7 @@ class Server:
         if start >= csv_size:
             return []
         return self.dataset()[start:end]
-    
+
 
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """Returns a tuple containing a start and end index.
