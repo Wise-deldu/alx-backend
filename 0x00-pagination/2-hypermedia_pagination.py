@@ -11,14 +11,14 @@ def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """
     Return a tuple of size two containing a start
     index and an end index corresponding to the range
-    of indexes to return in a list for 
+    of indexes to return in a list for
     those particular pagination parameters
-    
+
     Args:
         page (int); the number of the page
         Page_size (int): the number of items per page
 
-    Returns: 
+    Returns:
         Tuple[int, int]: start and end indexes of current page.
     """
     start_index = (page - 1) * page_size
@@ -44,8 +44,8 @@ class Server:
             self.__dataset = dataset[1:]
 
         return self.__dataset
-    
-    def get_page(self, page: int  = 1, page_size: int = 10) -> List[List]:
+
+    def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """ Retrieves a specific page of the dataset of popular baby names.
 
         Args:
@@ -54,8 +54,9 @@ class Server:
             page_size (int, optional): the number of items per page.
             Defaults to 10.
 
-        Returns: 
-            List[List]: a list of rows representing the requested page of the dataset.
+        Returns:
+            List[List]: a list of rows representing the requested
+            page of the dataset.
         """
         assert type(page) == int
         assert type(page_size) == int
@@ -67,28 +68,32 @@ class Server:
         if start >= csv_size:
             return []
         return self.dataset()[start:end]
-    
+
     def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, Any]:
         """ Retrieves a specific page of the dataset of popular baby names
         along with pagination metadata.
-        
+
         Args:
             page (int, optional): The number of the page to retrieve.
             Defaults to 1.
             page_size (int, optional): The number of items per page.
             Defaults to 10.
-            
+
         Returns:
             Dict: A dictionary containing the following key-value pairs:
             page_size (int): the length of the returned dataset page.
             page (int): the current page number.
             data (List[List]): the dataset page.
-            next_page (int or None): number of the next page, None if no next page
-            prev_page (int or None): number of the previous page, None if no previous page
-            total_pages (int): the total number of pages in the dataset as an integer.
-            
+            next_page (int or None): number of the next page,
+            None if no next page
+            prev_page (int or None): number of the previous page,
+            None if no previous page
+            total_pages (int): the total number of pages
+            in the dataset as an integer.
+
         Raises:
-            AssertionError: If either of the input arguments is not an integer greater than 0
+            AssertionError: If either of the input arguments
+            is not an integer greater than 0
         """
         total_pages = math.ceil(len(self.dataset()) / page_size)
         return {
